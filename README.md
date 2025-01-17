@@ -70,7 +70,7 @@ Professor AI is an educational tool and should not be considered financial advic
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE]([LICENSE](https://opensource.org/license/mit)) file for details.
+This project is licensed under the MIT License - see the [LICENSE]([https://opensource.org/license/mit) file for details.
 
 ## Certificate of Completion
 
