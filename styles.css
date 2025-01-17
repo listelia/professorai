@@ -1,0 +1,58 @@
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    body {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000; /* Dark background like in the image */
+        min-height: 100vh;
+    }
+
+    .chat-container {
+        width: 95%;
+        max-width: 380px;
+        height: 80vh; /* Reduced from 90vh to make it more compact */
+        margin: 20px auto;
+        border-radius: 30px; /* Increased border radius to match iPhone style */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        background: #1a1a1a; /* Dark theme matching the image */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .chat-header {
+        padding: 10px;
+    }
+
+    .chat-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .chat-header p {
+        font-size: 0.9rem;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-messages {
+        padding: 10px;
+    }
+
+    .message {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        max-width: 85%;
+    }
+
+    .chat-input {
+        padding: 10px;
+    }
+
+    .chat-input input {
+        font-size: 0.9rem;
+    }
+} 

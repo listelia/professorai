@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>Professor AI - Crypto Expert</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.56/build/spline-viewer.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            .spline-container {
+                display: none;
+            }
+            
+            .chat-container {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                height: 100vh;
+                position: relative;
+            }
+        }
+
+        /* Add this to hide the default cursor everywhere */
+        * {
+            cursor: none !important;
+        }
+
+        /* Custom Cursor Styles */
+        .custom-cursor {
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            box-shadow: 
+                0 0 10px #ffffff,
+                0 0 20px #ffffff,
+                0 0 30px #ffffff;
+        }
+
+        /* Scale effect on hover */
+        a:hover ~ .custom-cursor,
+        button:hover ~ .custom-cursor,
+        input:hover ~ .custom-cursor {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Add the custom cursor div -->
+    <div class="custom-cursor"></div>
+
+    <div class="spline-container">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/ZeBVGIq9BTKDpz83/scene.splinecode"></spline-viewer>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="ai-technology-robot-cyborg-illustrations_24640-134419.avif" class="profile-pic" alt="AI Avatar">
+            <div class="header-text">
+                <h1>Professor AI</h1>
+                <p>Crypto Expert</p>
+            </div>
+        </div>
+        <div class="chat-messages" id="messages">
+            <div class="message-group">
+                <div class="message bot">Hello! I'm Professor AI, your expert guide in the world of cryptocurrency. I'm here to help you understand the complexities of digital assets, blockchain technology, and crypto markets. What would you like to learn about today?</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Ask about cryptocurrency..." id="userInput">
+            <button onclick="sendMessage()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    
+    <!-- Add the cursor movement script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.querySelector('.custom-cursor');
+            
+            // Show cursor when mouse enters the window
+            document.addEventListener('mouseenter', () => {
+                cursor.style.opacity = '1';
+            });
+            
+            // Hide cursor when mouse leaves the window
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+            });
+            
+            // Move cursor with mouse
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>

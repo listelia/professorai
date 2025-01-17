@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor V2 - Dashboard Preview</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <!-- Preview Alert -->
+    <div class="preview-alert" id="previewAlert">
+        <div class="alert-content">
+            <h2>Attention</h2>
+            <p>This version of Professor AI is yet to be published. This is a basic example of what the dashboard would look like!</p>
+            <button onclick="closeAlert()">Understand</button>
+        </div>
+    </div>
+
+    <div class="preview-banner">
+        <div class="banner-content">
+            <i class="fas fa-code-branch"></i>
+            Dashboard Preview
+            <span class="version-tag">v2.0</span>
+        </div>
+    </div>
+    
+    <div class="wallet-container">
+        <button class="wallet-button">
+            <i class="fas fa-wallet"></i>
+            <span>Connect Wallet</span>
+        </button>
+    </div>
+    
+    <div class="dashboard">
+        <!-- Top Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card wide">
+                <h3><i class="fas fa-wallet"></i> Total Portfolio Value</h3>
+                <div class="value">$847,392.54</div>
+                <div class="change positive">+12.4% <i class="fas fa-arrow-up"></i></div>
+            </div>
+        </div>
+
+        <!-- Main Grid - First Row -->
+        <div class="card-grid">
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i> Weekly Profit</h3>
+                <div class="value">$24,856.12</div>
+                <div class="change positive">+8.2% <i class="fas fa-arrow-up"></i></div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-exchange-alt"></i> Total Trades</h3>
+                <div class="value">1,247</div>
+                <div class="sub-text">Last 24h: 86 trades</div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-check-circle"></i> Success Rate</h3>
+                <div class="value">92.4%</div>
+                <div class="sub-text">Last 100 trades</div>
+            </div>
+        </div>
+
+        <!-- New Grid - Second Row -->
+        <div class="card-grid">
+            <div class="card">
+                <h3><i class="fas fa-robot"></i> Active Bots</h3>
+                <div class="value">12</div>
+                <div class="sub-text">8 profitable</div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-bolt"></i> Average Response</h3>
+                <div class="value">1.2s</div>
+                <div class="sub-text">Trade execution time</div>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-shield-alt"></i> Risk Level</h3>
+                <div class="value">Low</div>
+                <div class="sub-text">Smart risk management</div>
+            </div>
+        </div>
+
+        <!-- New Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card wide performance-card">
+                <h3><i class="fas fa-chart-bar"></i> Performance Overview</h3>
+                <div class="performance-grid">
+                    <div class="performance-item">
+                        <span class="label">Daily ROI</span>
+                        <span class="value-small">+2.4%</span>
+                    </div>
+                    <div class="performance-item">
+                        <span class="label">Weekly ROI</span>
+                        <span class="value-small">+15.7%</span>
+                    </div>
+                    <div class="performance-item">
+                        <span class="label">Monthly ROI</span>
+                        <span class="value-small">+64.3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Trades -->
+        <div class="stats-row">
+            <div class="stat-card wide">
+                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="trade-info">
+                            <i class="fas fa-shopping-cart trade-icon"></i>
+                            <div class="trade-details">
+                                <span class="action">Bought FARTCOIN</span>
+                                <span class="time">2m ago</span>
+                            </div>
+                        </div>
+                        <span class="amount positive">+$12,453</span>
+                    </div>
+                    <div class="activity-item">
+                        <div class="trade-info">
+                            <i class="fas fa-shopping-cart trade-icon"></i>
+                            <div class="trade-details">
+                                <span class="action">Bought AI16Z</span>
+                                <span class="time">15m ago</span>
+                            </div>
+                        </div>
+                        <span class="amount positive">+$8,234</span>
+                    </div>
+                    <div class="activity-item">
+                        <div class="trade-info">
+                            <i class="fas fa-shopping-cart trade-icon"></i>
+                            <div class="trade-details">
+                                <span class="action">Bought SOL</span>
+                                <span class="time">1h ago</span>
+                            </div>
+                        </div>
+                        <span class="amount positive">+$5,678</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

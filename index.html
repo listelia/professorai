@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Professor AI</title>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.56/build/spline-viewer.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            padding-bottom: 5vh;
+        }
+
+        .spline-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .content {
+            z-index: 2;
+            text-align: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            width: 80%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-button {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .benefits {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.03) 0%,
+                rgba(255, 255, 255, 0.01) 100%
+            );
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .benefit-card p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding-bottom: 5vh;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.6rem;
+                font-size: 1rem;
+                color: #ffffff;
+                background-color: #000;
+            }
+
+            .button-group .cta-button {
+                color: #ffffff;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .social-icons {
+                top: 10px;
+                right: 10px;
+            }
+
+            .top-left-icons {
+                top: 10px;
+                left: 10px;
+            }
+        }
+
+        /* New Roadmap Styles */
+        .roadmap {
+            padding: 4rem 2rem;
+            background: #000000;
+            position: relative;
+        }
+
+        .roadmap-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Updated timeline line with glow effect */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0.3),
+                rgba(255,255,255,0)
+            );
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            text-align: center;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-content p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: center !important;
+                padding-left: 2rem;
+            }
+        }
+
+        .custom-cursor {
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            box-shadow: 
+                0 0 10px #ffffff,
+                0 0 20px #ffffff,
+                0 0 30px #ffffff;
+        }
+
+        /* Add hover effect for interactive elements */
+        a, button, [role="button"] {
+            cursor: none;
+        }
+
+        a:hover ~ .custom-cursor,
+        button:hover ~ .custom-cursor {
+            transform: scale(1.5);
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            right: 20px; /* Adjust as needed */
+            display: flex;
+            gap: 1rem; /* Space between icons */
+        }
+
+        .social-icon {
+            width: 40px; /* Size of the icons */
+            height: 40px; /* Size of the icons */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .top-left-icons {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            display: flex;
+            gap: 1rem; /* Space between icons */
+        }
+
+        .top-left-icon {
+            width: 40px; /* Size of the icons */
+            height: 40px; /* Size of the icons */
+            fill: rgba(255, 255, 255, 0.8); /* Color of the icons */
+            transition: all 0.3s ease;
+        }
+
+        .top-left-icon:hover {
+            fill: rgba(255, 255, 255, 1); /* Change color on hover */
+        }
+
+        .social-icons svg {
+            fill: #0088cc; /* For Telegram */
+        }
+
+        .social-icons svg:last-child {
+            fill: #1DA1F2; /* For Twitter */
+        }
+
+        .who-is-professor {
+            padding: 4rem 2rem;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .professor-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .professor-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .professor-text {
+            text-align: center;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .professor-text:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .professor-text p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .professor-model {
+            height: 400px;
+            position: relative;
+        }
+
+        .professor-model spline-viewer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Add responsive styles */
+        @media (max-width: 768px) {
+            .professor-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .professor-text {
+                order: 2;
+            }
+
+            .professor-model {
+                order: 1;
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .professor-text p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* Space between buttons */
+            margin-top: 2rem;
+        }
+
+        .button-container .cta-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .button-container .cta-button:hover {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Specific color for Telegram icon */
+        .button-container .cta-button i.fa-telegram {
+            color: #0088cc;
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .button-container .cta-button {
+                width: 100%;
+                justify-content: center;
+                color: #ffffff;
+            }
+        }
+
+        .professor-text .cta-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .tokenomics {
+            padding: 4rem 2rem;
+            background: #000000;
+            position: relative;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .tokenomics-card {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tokenomics-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.05)
+            );
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .tokenomics-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .tokenomics-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .tokenomics-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .tokenomics-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            position: relative;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .tokenomics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tokenomics {
+                padding: 3rem 1rem;
+            }
+            
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .benefits,
+            .who-is-professor,
+            .roadmap,
+            .tokenomics {
+                padding: 3rem 1rem;
+            }
+
+            .section-title,
+            .roadmap-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            background: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Responsive adjustment */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 1.5rem;
+            }
+            
+            .footer p {
+                font-size: 0.8rem;
+            }
+        }
+
+        .professor-v2 {
+            padding: 4rem 2rem;
+            background: #000000;
+            position: relative;
+            visibility: visible !important;
+        }
+
+        @media (max-width: 768px) {
+            .professor-v2 {
+                padding: 3rem 1rem;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            [data-aos] {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        .v2-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .v2-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .v2-features {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .feature-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 1px;
+        }
+
+        .v2-features h3 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(to right, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .feature-list li {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            /* Optional: Add a subtle glow effect */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .v2-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .dashboard-btn {
+            opacity: 0.6;
+        }
+
+        .cta-button.disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button.disabled:hover {
+            transform: none;
+        }
+
+        .cta-button.disabled i {
+            margin-right: 8px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .professor-v2 {
+                padding: 3rem 1rem;
+            }
+
+            .v2-features {
+                padding: 2rem 1rem;
+            }
+
+            .feature-list {
+                gap: 0.8rem;
+            }
+
+            .feature-list li {
+                font-size: 1rem;
+            }
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .ca-button {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(255, 255, 255, 0.03) 100%
+            );
+            position: relative;
+            font-size: 0.9rem;
+            padding: 0.6rem 2rem;
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .ca-button.copied .copy-tooltip {
+            opacity: 1;
+        }
+
+        .contract-address {
+            padding: 4rem 2rem 2rem 2rem;
+            background: #000000;
+            position: relative;
+        }
+
+        .ca-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ca-box {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ca-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .ca-box:hover::before {
+            left: 100%;
+        }
+
+        .ca-box:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .ca-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        .ca-copy-btn {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .ca-copy-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .ca-copy-btn.copied .copy-tooltip {
+            opacity: 1;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .contract-address {
+                padding: 1.5rem 1rem;
+            }
+
+            .ca-box {
+                padding: 1rem;
+                flex-direction: column;
+            }
+
+            .ca-text {
+                font-size: 0.9rem;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="hero">
+        <div class="spline-container">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/5Fq-v0nCJuUR0qIJ/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="content">
+            <h1>Crypto Professor AI</h1>
+            <p>Your intelligent guide to the world of cryptocurrency.</p>
+            <div class="button-group">
+                <button onclick="window.location.href='./professor v2/index.html'" class="cta-button">Chat with Professor</button>
+            
+            </div>
+        </div>
+    </div>
+
+    <section class="contract-address">
+        <div class="ca-container">
+            <div class="ca-box">
+                <span class="ca-text">Coming Soon...</span>
+                <button onclick="copyCA()" class="ca-copy-btn">
+                    <i class="fas fa-copy"></i>
+                    <span>Copy CA</span>
+                    <div class="copy-tooltip">Copied!</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>Real-time Analysis</h3>
+                <p>Get instant market insights and trend analysis powered by AI</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Personalized Learning</h3>
+                <p>Custom-tailored educational paths based on your experience level</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Risk Management</h3>
+                <p>Learn strategic approaches to protect and grow your investments</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Market Predictions</h3>
+                <p>AI-driven forecasts and pattern recognition for informed decisions</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Portfolio Tracking</h3>
+                <p>Monitor and optimize your crypto investments in real-time</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Community Insights</h3>
+                <p>Access collective wisdom from experienced crypto traders</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="who-is-professor">
+        <div class="professor-content">
+            <h2 class="section-title" data-aos="fade-up">Who is Professor?</h2>
+            <div class="professor-grid">
+                <div class="professor-text" data-aos="fade-right">
+                    <p>Meet Professor AI, your dedicated guide in the fascinating world of cryptocurrency and Web3. Designed specifically for beginners, Professor AI breaks down complex concepts into easy-to-understand explanations.</p>
+                    <p>Whether your friends or family are curious about blockchain, cryptocurrencies, or the future of digital finance, Professor AI is here to help. Share this resource with anyone looking to start their crypto journey - they'll receive personalized, patient guidance every step of the way.</p>
+                    <div class="button-container">
+                        <a href="https://x.com/cryptoprofai" target="_blank" class="cta-button">
+                            <i class="fab fa-x-twitter"></i> Follow Professor
+                        </a>
+                        <a href="https://t.me/ProfessorAI_Chat" target="_blank" class="cta-button">
+                            <i class="fab fa-telegram"></i> Join Community
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap">
+        <h2 class="roadmap-title" data-aos="fade-up">Roadmap 2025</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>Q1 2025 - Launch Phase</h3>
+                    <p>• Fair Launch on PumpFun<br>
+                        • T3-T2 KOLs & Advisor Partnerships<br>
+                        • CMC & CG Listings<br>
+                        • DexScreener Ads & Boosts<br>
+                        • Target: $50M-$100M MarketCap</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>Q2 2025 - Growth Phase</h3>
+                    <p>• T1 KOLs & CEX Listings<br>
+                        • iOS & Android App Integration<br>
+                        • AppStore Marketing Campaign<br>
+                        • Subscription Model Launch<br>
+                        • Target: $100M-$400M MarketCap</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>Q3 2025 - Expansion Phase</h3>
+                    <p>• Binance, Bybit & Coinbase Listings<br>
+                        • App Centralization Implementation<br>
+                        • Retail-Focused Governance<br>
+                        • Enhanced Platform Features<br>
+                        • Target: $400M-$1B MarketCap</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>Q4 2025 - Maturity Phase</h3>
+                    <p>• Full DAO Transition<br>
+                        • Cross-chain Integration<br>
+                        • Advanced Market Predictions<br>
+                        • Global Expansion<br>
+                        • Target: $1B-$10B+ MarketCap</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tokenomics">
+        <h2 class="section-title" data-aos="fade-up">Tokenomics</h2>
+        <div class="tokenomics-grid">
+            <div class="tokenomics-card" data-aos="fade-up">
+                <div class="card-content">
+                    <h3>1 Billion</h3>
+                    <p>Total Supply</p>
+                </div>
+            </div>
+            <div class="tokenomics-card" data-aos="fade-up">
+                <div class="card-content">
+                    <h3>LP Locked</h3>
+                    <p>Liquidity Secured</p>
+                </div>
+            </div>
+            <div class="tokenomics-card" data-aos="fade-up">
+                <div class="card-content">
+                    <h3>Mint Revoked</h3>
+                    <p>No Additional Tokens</p>
+                </div>
+            </div>
+            <div class="tokenomics-card" data-aos="fade-up">
+                <div class="card-content">
+                    <h3>No Presale</h3>
+                    <p>Fair Launch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="professor-v2" data-aos="fade-up" data-aos-once="true" data-aos-duration="1000">
+        <div class="v2-container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="200">Professor V2</h2>
+            <div class="v2-content" data-aos="fade-up" data-aos-delay="400">
+                <div class="v2-features">
+                    <div class="feature-tag">Coming Soon</div>
+                    <h3>Advanced Trading Features</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-rocket feature-icon"></i>
+                            Token Launch Integration
+                        </li>
+                        <li>
+                            <i class="fas fa-wallet feature-icon"></i>
+                            Multi-Wallet Tracking
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            Copy Trading System
+                        </li>
+                        <li>
+                            <i class="fas fa-exchange-alt feature-icon"></i>
+                            Direct Token Swaps
+                        </li>
+                    </ul>
+                    <div class="v2-buttons">
+                        <button class="cta-button disabled">
+                            <i class="fas fa-lock"></i> Chat with Professor V2
+                        </button>
+                        <button onclick="window.location.href='./dashboard/index.html'" class="cta-button disabled dashboard-btn">
+                            <i class="fas fa-unlock"></i> Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Custom cursor movement
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.querySelector('.custom-cursor');
+            
+            // Show cursor when mouse enters the window
+            document.addEventListener('mouseenter', () => {
+                cursor.style.opacity = '1';
+            });
+            
+            // Hide cursor when mouse leaves the window
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+            });
+            
+            // Move cursor with mouse
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.opacity = '1';
+            });
+        });
+
+        function copyCA() {
+            const ca = "Coming Soon..."; // Replace with your actual contract address
+            navigator.clipboard.writeText(ca).then(() => {
+                const button = document.querySelector('.ca-copy-btn');
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+
+    <footer class="footer">
+        <p>© 2024 Professor AI. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
