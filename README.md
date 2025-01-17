@@ -77,4 +77,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Users who complete the full curriculum will receive a digital certificate of completion. This certificate is for educational purposes only and does not constitute professional certification in cryptocurrency trading or blockchain technology.
 
 ---
-Made with ❤️ by the Professor AI Team
+Made with ❤️ by Listelia
